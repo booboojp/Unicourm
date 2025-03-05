@@ -73,3 +73,10 @@ body::after {
     transform: scale(1.05);
     box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
+
+#alt-search-links {
+    max-height: 200px; /* Adjust the height as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    padding: 5px; /* Optional: Add some padding */
+}
