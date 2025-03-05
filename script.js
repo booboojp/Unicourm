@@ -162,6 +162,22 @@ document.addEventListener('DOMContentLoaded', function () {
 		FurAffinity: (query) => `https://www.furaffinity.net/search/?q=${encodeURIComponent(query)}`,
 		Inkbunny: (query) => `https://inkbunny.net/search.php?q=${encodeURIComponent(query)}`,
 		SoFurry: (query) => `https://www.sofurry.com/browse/search?query=${encodeURIComponent(query)}`,
+		Weasyl: (query) => `https://www.weasyl.com/search?query=${encodeURIComponent(query)}`,
+		DeviantArt: (query) => `https://www.deviantart.com/search?q=${encodeURIComponent(query)}`,
+		ArtStation: (query) => `https://www.artstation.com/search?q=${encodeURIComponent(query)}`,
+		Newgrounds: (query) => `https://www.newgrounds.com/search?q=${encodeURIComponent(query)}`,
+		itchio: (query) => `https://itch.io/search?q=${encodeURIComponent(query)}`,
+		GameJolt: (query) => `https://gamejolt.com/search?q=${encodeURIComponent(query)}`,
+		IndieDB: (query) => `https://www.indiedb.com/search?q=${encodeURIComponent(query)}`,
+		ModDB: (query) => `https://www.moddb.com/search?q=${encodeURIComponent(query)}`,
+		Steam: (query) => `https://store.steampowered.com/search/?term=${encodeURIComponent(query)}`,
+		GOG: (query) => `https://www.gog.com/games?search=${encodeURIComponent(query)}`,
+		HumbleBundle: (query) => `https://www.humblebundle.com/store/search?search=${encodeURIComponent(query)}`,
+		Origin: (query) => `https://www.origin.com/search?searchString=${encodeURIComponent(query)}`,
+		Uplay: (query) => `https://store.ubi.com/us/search?q=${encodeURIComponent(query)}`,
+		Netflix: (query) => `https://www.netflix.com/search?q=${encodeURIComponent(query)}`,
+		Hulu: (query) => `https://www.hulu.com/search?q=${encodeURIComponent(query)}`,
+		
     };
     
     let selectedEngine = 'Google';
