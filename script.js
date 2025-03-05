@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             try {
                                 result[key] = JSON.parse(result[key]);
                             } catch (e) {
-								console.error('Failed to parse JSON:', e);
+                                console.error('Failed to parse JSON:', e);
                             }
                         }
                     });
@@ -141,47 +141,32 @@ document.addEventListener('DOMContentLoaded', function () {
         StackOverflow: (query) => `https://stackoverflow.com/search?q=${encodeURIComponent(query)}`,
         Wikipedia: (query) => `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(query)}`,
         YouTube: (query) => `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`,
-		MangaDex: (query) => `https://mangadex.org/search?title=${encodeURIComponent(query)}`,
+        MangaDex: (query) => `https://mangadex.org/search?title=${encodeURIComponent(query)}`,
         Amazon: (query) => `https://www.amazon.com/s?k=${encodeURIComponent(query)}`,
-		EHentai: (query) => `https://e-hentai.org/?f_search=${encodeURIComponent(query)}`,
-		E621: (query) => `https://e621.net/post?tags=${encodeURIComponent(query)}`,
-		Nhentai: (query) => `https://nhentai.net/search/?q=${encodeURIComponent(query)}`,
-		Pixiv: (query) => `https://www.pixiv.net/search.php?s_mode=s_tag&word=${encodeURIComponent(query)}`,
-		OneThreeThreeSevenX: (query) => `https://1337x.to/search/${encodeURIComponent(query)}/1/`,
-		Sankaku: (query) => `https://chan.sankakucomplex.com/?tags=${encodeURIComponent(query)}`,
-		Danbooru: (query) => `https://danbooru.donmai.us/posts?tags=${encodeURIComponent(query)}`,
-		Gelbooru: (query) => `https://gelbooru.com/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
-		Konachan: (query) => `https://konachan.com/post?tags=${encodeURIComponent(query)}`,
-		Yande: (query) => `https://yande.re/post?tags=${encodeURIComponent(query)}`,
-		Safebooru: (query) => `https://safebooru.org/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
-		Rule34: (query) => `https://rule34.xxx/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
-		Hypnohub: (query) => `https://hypnohub.net/post?tags=${encodeURIComponent(query)}`,
-		Paheal: (query) => `https://rule34.paheal.net/post/list/${encodeURIComponent(query)}`,
-		TBIB: (query) => `https://thebarchive.com/b/search/${encodeURIComponent(query)}`,
-		FChan: (query) => `https://fchan.us/?q=${encodeURIComponent(query)}`,
-		FurAffinity: (query) => `https://www.furaffinity.net/search/?q=${encodeURIComponent(query)}`,
-		Inkbunny: (query) => `https://inkbunny.net/search.php?q=${encodeURIComponent(query)}`,
-		SoFurry: (query) => `https://www.sofurry.com/browse/search?query=${encodeURIComponent(query)}`,
-		Weasyl: (query) => `https://www.weasyl.com/search?query=${encodeURIComponent(query)}`,
-		DeviantArt: (query) => `https://www.deviantart.com/search?q=${encodeURIComponent(query)}`,
-		ArtStation: (query) => `https://www.artstation.com/search?q=${encodeURIComponent(query)}`,
-		Newgrounds: (query) => `https://www.newgrounds.com/search?q=${encodeURIComponent(query)}`,
-		itchio: (query) => `https://itch.io/search?q=${encodeURIComponent(query)}`,
-		GameJolt: (query) => `https://gamejolt.com/search?q=${encodeURIComponent(query)}`,
-		IndieDB: (query) => `https://www.indiedb.com/search?q=${encodeURIComponent(query)}`,
-		ModDB: (query) => `https://www.moddb.com/search?q=${encodeURIComponent(query)}`,
-		Steam: (query) => `https://store.steampowered.com/search/?term=${encodeURIComponent(query)}`,
-		GOG: (query) => `https://www.gog.com/games?search=${encodeURIComponent(query)}`,
-		HumbleBundle: (query) => `https://www.humblebundle.com/store/search?search=${encodeURIComponent(query)}`,
-		Origin: (query) => `https://www.origin.com/search?searchString=${encodeURIComponent(query)}`,
-		Uplay: (query) => `https://store.ubi.com/us/search?q=${encodeURIComponent(query)}`,
-		Netflix: (query) => `https://www.netflix.com/search?q=${encodeURIComponent(query)}`,
-		Hulu: (query) => `https://www.hulu.com/search?q=${encodeURIComponent(query)}`,
-		
+        //EHentai: (query) => `https://e-hentai.org/?f_search=${encodeURIComponent(query)}`,
+        e621: (query) => `https://e621.net/post?tags=${encodeURIComponent(query)}`,
+        //Nhentai: (query) => `https://nhentai.net/search/?q=${encodeURIComponent(query)}`,
+        //Pixiv: (query) => `https://www.pixiv.net/search.php?s_mode=s_tag&word=${encodeURIComponent(query)}`,
+        OneThreeThreeSevenX: (query) => `https://1337x.to/search/${encodeURIComponent(query)}/1/`,
+        //Sankaku: (query) => `https://chan.sankakucomplex.com/?tags=${encodeURIComponent(query)}`,
+        //Danbooru: (query) => `https://danbooru.donmai.us/posts?tags=${encodeURIComponent(query)}`,
+        //Gelbooru: (query) => `https://gelbooru.com/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
+        //Konachan: (query) => `https://konachan.com/post?tags=${encodeURIComponent(query)}`,
+        //Yande: (query) => `https://yande.re/post?tags=${encodeURIComponent(query)}`,
+        //Safebooru: (query) => `https://safebooru.org/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
+        //Rule34: (query) => `https://rule34.xxx/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
+        //Hypnohub: (query) => `https://hypnohub.net/post?tags=${encodeURIComponent(query)}`,
+        //Paheal: (query) => `https://rule34.paheal.net/post/list/${encodeURIComponent(query)}`,
+        //TBIB: (query) => `https://thebarchive.com/b/search/${encodeURIComponent(query)}`,
+        //FChan: (query) => `https://fchan.us/?q=${encodeURIComponent(query)}`,
+        //FurAffinity: (query) => `https://www.furaffinity.net/search/?q=${encodeURIComponent(query)}`,
+        //Inkbunny: (query) => `https://inkbunny.net/search.php?q=${encodeURIComponent(query)}`,
+        //SoFurry: (query) => `https://www.sofurry.com/browse/search?query=${encodeURIComponent(query)}`,
     };
     
     let selectedEngine = 'Google';
     let lastQuery = '';
+    let currentStartIndex = 0;
     
     storage.sync.get(['selectedEngine', 'lastQuery'], function(result) {
         if (result.selectedEngine) {
@@ -211,7 +196,11 @@ document.addEventListener('DOMContentLoaded', function () {
     function updateSearchEngines(query) {
         altSearchLinks.innerHTML = '';
         
-        Object.keys(searchEngines).forEach((name, index) => {
+        const engines = Object.keys(searchEngines);
+        const endIndex = Math.min(currentStartIndex + 3, engines.length);
+        
+        for (let i = currentStartIndex; i < endIndex; i++) {
+            const name = engines[i];
             const link = document.createElement('a');
             link.href = searchEngines[name](query);
             link.textContent = name;
@@ -255,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
             
             altSearchLinks.appendChild(link);
-        });
+        }
     }
 
     searchForm.addEventListener('submit', function(e) {
@@ -272,22 +261,16 @@ document.addEventListener('DOMContentLoaded', function () {
         
         if (!query) return;
         
-        if (e.key === 'Tab') {
+        const engines = Object.keys(searchEngines);
+        
+        if (e.key === 'ArrowDown') {
             e.preventDefault();
-            
-            const engines = Object.keys(searchEngines);
-            const currentIndex = engines.indexOf(selectedEngine);
-            const nextIndex = (currentIndex + 1) % engines.length;
-            selectedEngine = engines[nextIndex];
-            const links = document.querySelectorAll('.search-link');
-            links.forEach(link => {
-                link.classList.remove('selected');
-                link.setAttribute('tabindex', '2');
-            });
-            
-            links[nextIndex].classList.add('selected');
-            links[nextIndex].setAttribute('tabindex', '1');
-            links[nextIndex].focus();
+            currentStartIndex = (currentStartIndex + 1) % engines.length;
+            updateSearchEngines(query);
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            currentStartIndex = (currentStartIndex - 1 + engines.length) % engines.length;
+            updateSearchEngines(query);
         }
     });
     
