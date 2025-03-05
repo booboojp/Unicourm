@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     music.load();
 
-    // Create a fallback for chrome.storage using localStorage
     const chromeStorageFallback = {
         sync: {
             get: function(keys, callback) {
@@ -16,12 +15,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 } else if (Array.isArray(keys)) {
                     keys.forEach(key => {
                         result[key] = localStorage.getItem(key);
-                        // Parse JSON if the stored value is a JSON string
                         if (result[key] && (result[key].startsWith('{') || result[key].startsWith('['))) {
                             try {
                                 result[key] = JSON.parse(result[key]);
                             } catch (e) {
-                                // Keep as string if not valid JSON
+								console.error('Failed to parse JSON:', e);
                             }
                         }
                     });
@@ -36,7 +34,6 @@ document.addEventListener('DOMContentLoaded', function () {
             set: function(items, callback) {
                 console.log('Using localStorage fallback for set');
                 Object.keys(items).forEach(key => {
-                    // Convert objects/arrays to JSON strings before storing
                     if (typeof items[key] === 'object' && items[key] !== null) {
                         localStorage.setItem(key, JSON.stringify(items[key]));
                     } else {
@@ -58,11 +55,9 @@ document.addEventListener('DOMContentLoaded', function () {
     function playMusic() {
         music.loop = true;
 
-        // Load saved music position
         storage.sync.get(['musicPosition'], function(result) {
             if (result.musicPosition) {
                 try {
-                    // Convert to number if stored as string
                     music.currentTime = parseFloat(result.musicPosition);
                     console.log('Restored music position to:', music.currentTime);
                 } catch (e) {
@@ -70,7 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
             
-            // Only auto-play if the tab is visible
             if (document.visibilityState === 'visible') {
                 music.play()
                     .then(() => {
@@ -102,18 +96,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Save music position periodically (every 5 seconds)
     setInterval(function() {
         if (!music.paused && music.currentTime > 0) {
             storage.sync.set({musicPosition: music.currentTime});
             console.log('Saved music position:', music.currentTime);
         }
     }, 5000);
-
-    // Handle tab visibility changes
     document.addEventListener('visibilitychange', function() {
         if (document.visibilityState === 'hidden') {
-            // Save current position and playing state
             wasMusicPlaying = !music.paused;
             if (wasMusicPlaying) {
                 storage.sync.set({musicPosition: music.currentTime});
@@ -121,14 +111,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 music.pause();
             }
         } else if (document.visibilityState === 'visible' && wasMusicPlaying) {
-            // Resume if it was playing when hidden
             music.play()
                 .then(() => console.log('Resumed music playback'))
                 .catch(e => console.log('Could not resume playback:', e));
         }
     });
 
-    // Save position before page unload
     window.addEventListener('beforeunload', function() {
         if (!music.paused && music.currentTime > 0) {
             storage.sync.set({musicPosition: music.currentTime});
@@ -153,8 +141,27 @@ document.addEventListener('DOMContentLoaded', function () {
         StackOverflow: (query) => `https://stackoverflow.com/search?q=${encodeURIComponent(query)}`,
         Wikipedia: (query) => `https://en.wikipedia.org/w/index.php?search=${encodeURIComponent(query)}`,
         YouTube: (query) => `https://www.youtube.com/results?search_query=${encodeURIComponent(query)}`,
+		MangaDex: (query) => `https://mangadex.org/search?title=${encodeURIComponent(query)}`,
         Amazon: (query) => `https://www.amazon.com/s?k=${encodeURIComponent(query)}`,
-        ExHentai: (query) => `https://exhentai.org/?f_search=${encodeURIComponent(query)}`,
+		EHentai: (query) => `https://e-hentai.org/?f_search=${encodeURIComponent(query)}`,
+		E621: (query) => `https://e621.net/post?tags=${encodeURIComponent(query)}`,
+		Nhentai: (query) => `https://nhentai.net/search/?q=${encodeURIComponent(query)}`,
+		Pixiv: (query) => `https://www.pixiv.net/search.php?s_mode=s_tag&word=${encodeURIComponent(query)}`,
+		OneThreeThreeSevenX: (query) => `https://1337x.to/search/${encodeURIComponent(query)}/1/`,
+		Sankaku: (query) => `https://chan.sankakucomplex.com/?tags=${encodeURIComponent(query)}`,
+		Danbooru: (query) => `https://danbooru.donmai.us/posts?tags=${encodeURIComponent(query)}`,
+		Gelbooru: (query) => `https://gelbooru.com/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
+		Konachan: (query) => `https://konachan.com/post?tags=${encodeURIComponent(query)}`,
+		Yande: (query) => `https://yande.re/post?tags=${encodeURIComponent(query)}`,
+		Safebooru: (query) => `https://safebooru.org/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
+		Rule34: (query) => `https://rule34.xxx/index.php?page=post&s=list&tags=${encodeURIComponent(query)}`,
+		Hypnohub: (query) => `https://hypnohub.net/post?tags=${encodeURIComponent(query)}`,
+		Paheal: (query) => `https://rule34.paheal.net/post/list/${encodeURIComponent(query)}`,
+		TBIB: (query) => `https://thebarchive.com/b/search/${encodeURIComponent(query)}`,
+		FChan: (query) => `https://fchan.us/?q=${encodeURIComponent(query)}`,
+		FurAffinity: (query) => `https://www.furaffinity.net/search/?q=${encodeURIComponent(query)}`,
+		Inkbunny: (query) => `https://inkbunny.net/search.php?q=${encodeURIComponent(query)}`,
+		SoFurry: (query) => `https://www.sofurry.com/browse/search?query=${encodeURIComponent(query)}`,
     };
     
     let selectedEngine = 'Google';
@@ -206,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 e.preventDefault();
                 selectedEngine = name;
                 
-                // Save selected engine preference to storage
                 storage.sync.set({selectedEngine: name});
                 
                 document.querySelectorAll('.search-link').forEach(l => {
